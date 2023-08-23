@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: #Dictionary
+  name: myfrontend-deployment
+  labels:
+    app: myfrontend
+  namespace: default
+spec: # Dictionary
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myfrontend
+  template:  
+    metadata: # Dictionary
+      name: myfrontend-pod
+      labels: # Dictionary
+        app: myfrontend  # Key value paids
+    spec:
+      containers: # List
+        - name: myfrontend-container
+          #dominio para ricardocloud.pt v1=http - v2=https
+          #image: ricardoterraform/clientdominioricardocloud:v1
+          #dominio para fake.pt
+          image: ricardoterraform/clientdominiofake:v1
+          #dominio por IP
+          #image: ricardoterraform/clientip:v1
+          imagePullPolicy: Always
+          #ports: 
+            #- containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: deployment1-frontend-service
+  labels:
+    app: myfrontend
+  namespace: default 
+spec:
+  type: ClusterIP
+  selector:
+    app: myfrontend
+  ports:
+    - name: myfrontend
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

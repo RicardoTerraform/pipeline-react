@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: #Dictionary
+  name: mybackend-deployment
+  labels:
+    app: mybackend
+  namespace: default
+spec: # Dictionary
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mybackend
+  template:  
+    metadata: # Dictionary
+      name: mybackend-pod
+      labels: # Dictionary
+        app: mybackend  # Key value paids
+    spec:
+      containers: # List
+        - name: mybackend-container
+          image: ricardoterraform/posts:v4
+          imagePullPolicy: Always
+          #ports: 
+            #- containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: deployment1-backend-service
+  labels:
+    app: mybackend
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: mybackend
+  ports:
+    - name: mybackend
+      protocol: TCP
+      port: 4000
+      targetPort: 4000
