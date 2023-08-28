@@ -18,12 +18,7 @@ spec: # Dictionary
     spec:
       containers: # List
         - name: myfrontend-container
-          #dominio para ricardocloud.pt v1=http - v2=https
-          #image: ricardoterraform/clientdominioricardocloud:v1
-          #dominio para fake.pt
-          image: ricardoterraform/clientdominiofake:v1
-          #dominio por IP
-          #image: ricardoterraform/clientip:v1
+          image: ricardoterraform/client:v1
           imagePullPolicy: Always
           #ports: 
             #- containerPort: 80

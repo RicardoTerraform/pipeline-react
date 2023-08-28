@@ -7,7 +7,7 @@ const PostList = () => {
   const [posts, setPosts] = useState({});
 
   const fetchPosts = async () => {
-    const res = await axios.get("http://ricardocloud.pt/posts");
+    const res = await axios.get("/posts");
 
     setPosts(res.data);
   };
