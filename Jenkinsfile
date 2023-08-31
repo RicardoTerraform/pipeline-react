@@ -1,3 +1,4 @@
+def COMMIT_ID=''
 pipeline {
     agent any
 
@@ -5,13 +6,20 @@ pipeline {
         stage ('Checking out GitHub Repo') {
             steps {
                 git branch: 'main', url: 'https://github.com/RicardoTerraform/pipeline-react.git'
+                
+                script {
+                    COMMIT_ID = sh (
+                        script: "git log -n 1 --pretty=format:'%H'",
+                        returnStdout: true)
+                }
             }
         }
 
         stage('Build Image') {
             steps {
                 script {
-                    dockerapp = docker.build("ricardoterraform/clientes:${env.BUILD_ID}", '-f ./client/Dockerfile ./client')
+                    dockerapp = docker.build("ricardoterraform/clientes:${COMMIT_ID}", '-f ./client/Dockerfile ./client')
+                    echo "image built successfully"
                 }
             }
         }
@@ -19,9 +27,11 @@ pipeline {
         stage ('Push Image') {
             steps {
                 script {
+                    echo "pushing image to docker hub"
                     docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub'){
-                        dockerapp.push("${env.BUILD_ID}")
+                        dockerapp.push("${COMMIT_ID}")
                     }
+                    echo "image pushed successfully to docker container registry"
                 }
             }
         }
