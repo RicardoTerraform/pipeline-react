@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('Checking out GitHub Repo') {
             steps {
-                git url: 'https://github.com/RicardoTerraform/pipeline-react.git'
+                git branch: 'main', url: 'https://github.com/RicardoTerraform/pipeline-react.git'
             }
         }
 
