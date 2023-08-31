@@ -11,7 +11,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    def dockerapp = docker.build("ricardoterraform/clientes", '-f ./client/Dockerfile ./client')
+                    def dockerapp = docker.build("ricardoterraform/clientes:a1", '-f ./client/Dockerfile ./client')
                 }
             }
         }
