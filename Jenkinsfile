@@ -11,7 +11,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    def dockerapp = docker.build("ricardoterraform/clientes:${env.BUILD_ID}", '-f ./client/Dockerfile ./client')
+                    dockerapp = docker.build("ricardoterraform/clientes:${env.BUILD_ID}", '-f ./client/Dockerfile ./client')
                 }
             }
         }
