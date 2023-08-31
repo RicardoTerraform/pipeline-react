@@ -2,16 +2,16 @@ pipeline {
     agent any
 
     stages {
-        stage('Stage 1') {
+        stage ('Checking out GitHub Repo') {
             steps {
-                echo 'Starting pipeline'
+                git url: 'https://github.com/RicardoTerraform/pipeline-react.git'
             }
         }
 
         stage('Build Image') {
             steps {
                 script {
-                    dockerapp = docker.build("ricardoterraform/clientes", '-f ./client/Dockerfile ./client')
+                    def dockerapp = docker.build("ricardoterraform/clientes", '-f ./client/Dockerfile ./client')
                 }
             }
         }
