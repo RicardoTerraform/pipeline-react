@@ -1,11 +1,29 @@
-pipeline{
+pipeline {
     agent any
 
-    stages{
-        stage('Stage 1'){
-            steps{
-                echo 'inicial 1'
+    stages {
+        stage('Stage 1') {
+            steps {
+                echo 'Startinf pipeline'
             }
         }
+
+        stage('Build Image') {
+            steps {
+                script {
+                    dockerapp = docker.build("ricardoterraform/clientes", '-f ./client/Dockerfile ./client')
+                }
+            }
+        }
+
+        // stage ('Push Image') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub')
+        //                 dockerapp.push(' ')
+
+        //         }
+        //     }
+        // }
     }
 }
