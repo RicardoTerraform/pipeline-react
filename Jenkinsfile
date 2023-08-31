@@ -11,19 +11,19 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    def dockerapp = docker.build("ricardoterraform/clientes:a1", '-f ./client/Dockerfile ./client')
+                    def dockerapp = docker.build("ricardoterraform/clientes:${env.BUILD_ID}", '-f ./client/Dockerfile ./client')
                 }
             }
         }
 
-        // stage ('Push Image') {
-        //     steps {
-        //         script {
-        //             docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub')
-        //                 dockerapp.push(' ')
+        stage ('Push Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub')
+                        dockerapp.push('${env.BUILD_ID}')
 
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
     }
 }
