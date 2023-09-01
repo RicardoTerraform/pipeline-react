@@ -9,7 +9,7 @@ pipeline {
                 
                 script {
                     //windows bat-linux sh
-                    COMMIT_ID = bat (
+                    COMMIT_ID = sh (
                         script: "git log -n 1 --pretty=format:'%H'",
                         returnStdout: true)
                     
