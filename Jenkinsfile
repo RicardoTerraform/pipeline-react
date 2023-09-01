@@ -8,23 +8,10 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/RicardoTerraform/pipeline-react.git'
                 
                 script {
-                    // // Determine the shell command based on the OS
-                    // def gitCommand
-                    // if (isUnix()) {
-                    //     gitCommand = "git log -n 1 --pretty=format:'%H'"
-                    // } else {
-                    //     gitCommand = "git log -n 1 --pretty=format:\"%H\""
-                    // }
-
-                    // COMMIT_ID = sh(script: gitCommand, returnStdout: true).trim()
-                    // echo "Commit ID is: ${COMMIT_ID}"
-
-
-
                     //windows bat-linux sh
                     COMMIT_ID = bat (
-                        script: "git log -n 1 --pretty=format:'%H'",
-                        returnStdout: true).trim()
+                        script: 'git log -n 1 --pretty=format:"%H"',
+                        returnStdout: true)
                     
                     echo "id is. ${COMMIT_ID}"
                 }
