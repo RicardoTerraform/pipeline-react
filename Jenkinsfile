@@ -1,4 +1,4 @@
-def COMMIT_ID=''
+def COMMIT_ID = ''
 pipeline {
     agent any
 
@@ -8,7 +8,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/RicardoTerraform/pipeline-react.git'
                 
                 script {
-                    COMMIT_ID = sh (
+                    COMMIT_ID = bat (
                         script: "git log -n 1 --pretty=format:'%H'",
                         returnStdout: true)
                 }
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     dockerapp = docker.build("ricardoterraform/clientes:${COMMIT_ID}", '-f ./client/Dockerfile ./client')
-                    echo "image built successfully"
+                    echo "Image built successfully"
                 }
             }
         }
