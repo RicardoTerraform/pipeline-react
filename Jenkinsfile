@@ -12,7 +12,7 @@ pipeline {
                     // COMMIT_ID = bat (
                     //     script: "git log -n 1 --pretty=format:'%S'",
                     //     returnStdout: true)
-                    GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                    GIT_COMMIT = bat(returnStdout: true, script: 'git rev-parse HEAD').trim()
                     echo "id is. ${COMMIT_ID}"
                 }
                 
