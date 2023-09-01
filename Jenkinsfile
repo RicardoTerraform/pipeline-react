@@ -13,7 +13,7 @@ pipeline {
                         script: "git log -n 1 --pretty=format:'%H'",
                         returnStdout: true)
                     
-                    echo "id is. ${COMMIT_ID}"
+                    echo "id is." %COMMIT_ID%
                 }
                 
             }
