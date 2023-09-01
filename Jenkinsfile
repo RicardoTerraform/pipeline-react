@@ -10,7 +10,7 @@ pipeline {
                 script {
                     //windows bat-linux sh
                     COMMIT_ID = bat (
-                        script: 'git log -n 1 --pretty=format:"%H"',
+                        script: "git log -n 1 --pretty=format:'%S'",
                         returnStdout: true)
                     
                     echo "id is. ${COMMIT_ID}"
