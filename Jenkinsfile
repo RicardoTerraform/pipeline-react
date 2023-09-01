@@ -8,10 +8,12 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/RicardoTerraform/pipeline-react.git'
                 
                 script {
+                    //windows bat-linux sh
                     COMMIT_ID = bat (
                         script: "git log -n 1 --pretty=format:'%H'",
                         returnStdout: true)
                 }
+                echo "id is ${COMMIT_ID}"
             }
         }
 
