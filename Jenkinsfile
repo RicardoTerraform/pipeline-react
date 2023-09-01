@@ -12,7 +12,7 @@ pipeline {
                     // COMMIT_ID = bat (
                     //     script: "git log -n 1 --pretty=format:'%S'",
                     //     returnStdout: true)
-                    COMMIT_ID = bat(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                    COMMIT_ID = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
                     echo "**************************************************"
                     echo "ricardoterraform/clientes:${COMMIT_ID}"
                     echo "**************************************************"
