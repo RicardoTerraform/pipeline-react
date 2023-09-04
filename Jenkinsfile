@@ -44,20 +44,20 @@ pipeline {
 
         stage ('Update Image FrontEnd') {
             steps {
-                git branch: 'main', url: 'https://github.com/RicardoTerraform/pipeline-react.git'
-                // git(
-                //     url: "https://github.com/RicardoTerraform/pipeline-react.git",
-                //     branch: "main",
-                //     changelog: true,
-                //     poll: true
-                // )
+                //git branch: 'main', url: 'https://github.com/RicardoTerraform/pipeline-react.git'
+                git(
+                    url: "https://github.com/RicardoTerraform/pipeline-react.git",
+                    branch: "main",
+                    changelog: true,
+                    poll: true
+                )
 
-                script{
-                    def text = readFile "infra/01-client-deploy.yaml"
-                    text = text.replace("image:.*", "image: ricardoterraform/client:${COMMIT_ID}")
-                    writeFile file: "", text: text
-                    sh("cat infra/01-client-deploy.yaml")
-                }
+                // script{
+                //     def text = readFile "infra/01-client-deploy.yaml"
+                //     text = text.replace("image:.*", "image: ricardoterraform/client:${COMMIT_ID}")
+                //     writeFile file: "", text: text
+                //     sh("cat infra/01-client-deploy.yaml")
+                // }
 
             }
         }
