@@ -52,12 +52,12 @@ pipeline {
                     poll: true
                 )
 
-                // script{
-                //     def text = readFile "infra/01-client-deploy.yaml"
-                //     text = text.replace("image:.*", "image: ricardoterraform/client:${COMMIT_ID}")
-                //     writeFile file: "", text: text
-                //     sh("cat infra/01-client-deploy.yaml")
-                // }
+                script{
+                    def text = readFile "infra/01-client-deploy.yaml"
+                    //text = text.replace("image:.*", "image: ricardoterraform/client:${COMMIT_ID}")
+                    //writeFile file: "", text: text
+                    //sh("cat infra/01-client-deploy.yaml")
+                }
 
             }
         }
