@@ -1,0 +1,6 @@
+apiVersion: Kustomize.config.k8s.io/v1betal
+kind: Kustomization
+metadata: 
+  name: arbitrary
+resource:
+- 

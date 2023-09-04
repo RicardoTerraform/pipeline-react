@@ -41,5 +41,25 @@ pipeline {
                 }
             }
         }
+
+        stage ('Update Image FrontEnd') {
+            steps {
+                git(
+                    url: "",
+                    branch: "",
+                    changelog: true,
+                    poll: true
+                )
+
+                script{
+                    def text = readFile "infra/01-client-deploy.yaml"
+                    text = text.replace("image:.*", "image: ricardoterraform/client:${COMMIT_ID}")
+                    writeFile file: "", text: text
+                    sh("cat infra/01-client-deploy.yaml")
+                }
+
+            }
+        }
+
     }
 }
