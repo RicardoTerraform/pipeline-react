@@ -45,8 +45,8 @@ pipeline {
         stage ('Update Image FrontEnd') {
             steps {
                 git(
-                    url: "",
-                    branch: "",
+                    url: "https://github.com/RicardoTerraform/pipeline-react.git",
+                    branch: "main",
                     changelog: true,
                     poll: true
                 )
