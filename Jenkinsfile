@@ -60,11 +60,11 @@ pipeline {
                 }
 
                 sh 'git config user.email "ricardo.jorge@sapo.pt"'
-                sh 'git config user.name "RicardoTerraform"'
+                sh 'git config user.name "ricardoterraform"'
                 sh 'git checkout main'
                 sh 'git add infra/01-client-deploy.yaml'
                 sh "git commit -am 'image tag updated by jenkins'"
-                withCredentials([gitUsernamePassword(credentialsId: 'GitHub')]) {
+                withCredentials([gitUsernamePassword(credentialsId: 'Github')]) {
                     sh "git push -f origin main"
                 }
             }
