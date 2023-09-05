@@ -59,6 +59,8 @@ pipeline {
                     //sh("cat infra/01-client-deploy.yaml")
                 }
 
+                sh 'git config user.email "ricardo.jorge@sapo.pt"'
+                sh 'git config user.name "RicardoTerraform"'
                 sh 'git add infra/01-client-deploy.yaml'
                 sh "git commit -am 'image tag updated by jenkins'"
                 sh "git push -f origin main"
