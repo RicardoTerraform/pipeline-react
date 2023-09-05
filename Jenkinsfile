@@ -30,7 +30,7 @@ pipeline {
             }
         }
 
-        stage ('Push Image') {
+        stage ('Push Image to DockerHub') {
             steps {
                 script {
                     echo "pushing image to docker hub"
@@ -53,14 +53,15 @@ pipeline {
                 )
 
                 script{
-                    //echo "COMMIT_ID: ${COMMIT_ID}" // Check COMMIT_ID
                     def text = readFile "infra/01-client-deploy.yaml"
                     text = text.replaceAll("image:.*", "image: ricardoterraform/client:${COMMIT_ID}")
-                    echo "change: ${text}"
                     writeFile file: "infra/01-client-deploy.yaml", text: text
-                    sh("cat infra/01-client-deploy.yaml")
+                    //sh("cat infra/01-client-deploy.yaml")
                 }
 
+                sh 'git add infra/01-client-deploy.yaml'
+                sh "git commit -am 'image tag updated by jenkins'"
+                sh "git push origin main"
             }
         }
 
