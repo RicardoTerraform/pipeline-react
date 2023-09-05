@@ -54,9 +54,8 @@ pipeline {
 
                 script{
                     echo "COMMIT_ID: ${COMMIT_ID}" // Check COMMIT_ID
-                    sh('ls -l infra/01-client-deploy.yaml') // Check file before modification
                     def text = readFile "infra/01-client-deploy.yaml"
-                    text = text.replace("image:.*", "image: ricardoterraform/client:${COMMIT_ID}")
+                    text = text.replace("image: ricardoterraform/*", "image: ricardoterraform/client:${COMMIT_ID}")
                     writeFile file: "infra/01-client-deploy.yaml", text: text
                     sh("cat infra/01-client-deploy.yaml")
                 }
