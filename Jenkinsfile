@@ -61,7 +61,7 @@ pipeline {
 
                 sh 'git add infra/01-client-deploy.yaml'
                 sh "git commit -am 'image tag updated by jenkins'"
-                sh "git push origin main"
+                sh "git push -f origin main"
             }
         }
 
