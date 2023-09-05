@@ -3,4 +3,4 @@ kind: Kustomization
 metadata: 
   name: arbitrary
 resource:
-- 
+- 01-client-deploy.yaml

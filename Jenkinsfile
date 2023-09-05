@@ -55,7 +55,7 @@ pipeline {
                 script{
                     def text = readFile "infra/01-client-deploy.yaml"
                     text = text.replace("image:.*", "image: ricardoterraform/client:${COMMIT_ID}")
-                    writeFile file: "", text: text
+                    writeFile file: "infra/01-client-deploy.yaml", text: text
                     //sh("cat infra/01-client-deploy.yaml")
                 }
 
