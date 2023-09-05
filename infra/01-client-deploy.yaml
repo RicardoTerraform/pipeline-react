@@ -18,7 +18,7 @@ spec: # Dictionary
     spec:
       containers: # List
         - name: myfrontend-container
-          image: ricardoterraform/client:#IMAGE
+          image: ricardoterraform/client:f37a5ed572250c5c70724efc76e9435fb8954747
           imagePullPolicy: Always
           #ports: 
             #- containerPort: 80
