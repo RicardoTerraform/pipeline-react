@@ -64,7 +64,7 @@ pipeline {
                 sh 'git add infra/01-client-deploy.yaml'
                 sh "git commit -am 'image tag updated by jenkins'"
                 withCredentials([gitUsernamePassword(credentialsID: 'GitHub', gitToolName: 'Default')]) {
-                    sh "git push -f origin main"
+                    sh "git push origin main"
                 }
             }
         }
