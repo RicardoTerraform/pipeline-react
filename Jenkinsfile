@@ -58,15 +58,12 @@ pipeline {
                     writeFile file: "infra/01-client-deploy.yaml", text: text
                     //sh("cat infra/01-client-deploy.yaml")
                 }
-                script {
-                    def credentials = credentials('Github')
-                    echo "Credentials: ${credentials}"
-                }
+
                 sh 'git config user.email "ricardo.jorge@sapo.pt"'
                 sh 'git config user.name "RicardoTerraform"'
                 sh 'git add infra/01-client-deploy.yaml'
                 sh "git commit -am 'image tag updated by jenkins'"
-                withCredentials([gitUsernamePassword(credentialsId: 'Github')]) {
+                withCredentials([gitUsernamePassword(credentialsId: 'Github', gitToolName: 'git-tool')]) {
                     sh "git push -f origin main"
                 }
             }
